@@ -6,6 +6,7 @@ export const theme = {
     secondary: '#E0E0E0', // cinza claro
     gray: '#828282', // cinza médio
     background: '#252329',
+    text: '#E0E0E0',
     accent: colors.grey.darken3,
     info: colors.teal.lighten1,
     warning: colors.amber.base,
@@ -17,6 +18,7 @@ export const theme = {
     secondary: '#333333', // cinza escuro
     gray: '#828282', // cinza médio
     background: '#FFFFFF',
+    text: '#333',
     accent: colors.grey.darken3,
     info: colors.teal.lighten1,
     warning: colors.amber.base,

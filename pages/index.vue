@@ -83,5 +83,8 @@
 <script>
 export default {
   name: 'IndexPage',
+  middleware ({ redirect }) {
+    redirect('/signup')
+  }
 }
 </script>
