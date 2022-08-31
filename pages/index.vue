@@ -74,6 +74,7 @@
         <v-card-actions>
           <v-spacer />
           <v-btn color="primary" nuxt to="/inspire"> Continue </v-btn>
+          <v-btn color="primary" nuxt @click="logout()"> Deslogar </v-btn>
         </v-card-actions>
       </v-card>
     </v-col>
@@ -81,10 +82,9 @@
 </template>
 
 <script>
+import Auth from '@/mixins/Auth'
 export default {
   name: 'IndexPage',
-  middleware ({ redirect }) {
-    redirect('/signup')
-  }
+  extends: Auth
 }
 </script>

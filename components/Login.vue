@@ -10,51 +10,59 @@
       <v-img :src="$vuetify.theme.dark ? '/devchallenges-light.svg' : '/devchallenges.svg'" alt="Dev challenges logo" width="130" class="mb-8 rounded-0"></v-img>
     <slot name="title"></slot>
       <v-form>
-        <v-text-field placeholder="Email" prepend-inner-icon="mdi-email" outlined></v-text-field>
-        <v-text-field placeholder="Password" prepend-inner-icon="mdi-lock" outlined></v-text-field>
-        <v-btn color="primary" width="100%" height="36" class="mb-2 font-size-16 text-transform-none letter-spacing-none">Start coding now</v-btn>
+        <v-text-field v-model="email" placeholder="Email" prepend-inner-icon="mdi-email" outlined></v-text-field>
+        <v-text-field v-model="password" placeholder="Password" prepend-inner-icon="mdi-lock" outlined></v-text-field>
+        <slot name="button"></slot>
       </v-form>
       <v-card-text tag="p" class="mb-4 text-center" color="secondary">or continue with these social profile</v-card-text>
       <div class="d-flex justify-center"> 
         <div>
           <v-btn 
-            v-for="icon in icons"
-            :key="icon"
+            v-for="media in socialMedia"
+            :key="media.icon"
             class="rounded-circle mx-3"
             min-width="42"
             width="42"
             height="42"
             color="gray"
-            outlined>
-            <v-icon color="gray">{{ icon }}</v-icon>
+            outlined
+            @click="loginWithSocialMedia(media.handler)">
+            <v-icon color="gray">{{ media.icon }}</v-icon>
           </v-btn>
         </div>
       </div>
       <slot name="link"></slot>
     </v-card>
     <v-footer class="mx-auto justify-space-between" max-width="474" color="transparent">
-      <p class="ma-0 font-size-14" :style="{color: grayColor}">
+      <p class="ma-0 font-size-14">
         created by
         <a href="https://github.com/danielfilh0" target="_blank" class="font-size-14 font-weight-semibold" style="color: inherit">danielfilh0</a>
       </p>
-      <a href="https://devchallenges.io/" target="_blank" class="font-size-14 text-decoration-none" :style="{color: grayColor}">devChallenges.io</a>
+      <a href="https://devchallenges.io/" target="_blank" class="font-size-14 text-decoration-none">devChallenges.io</a>
     </v-footer>
   </div>
 </template>
 
 <script>
+import {
+  GoogleAuthProvider,
+  FacebookAuthProvider,
+  TwitterAuthProvider,
+  GithubAuthProvider
+} from "firebase/auth"
+import Auth from '@/mixins/Auth'
+
 export default {
   name: 'LoginComponent',
+  extends: Auth,
   computed: {
-    icons() {
-      return ['mdi-google', 'mdi-facebook', 'mdi-twitter', 'mdi-github']
-    },
-    textColor() {
-      if (this.$vuetify.theme.dark) return this.$vuetify.theme.themes.dark.text
-      return this.$vuetify.theme.themes.light.text
-    },
-    grayColor() {
-      return this.$vuetify.theme.themes.light.gray
+    socialMedia() {
+      return [
+        { icon: 'mdi-google', handler: GoogleAuthProvider },
+        { icon: 'mdi-facebook', handler: FacebookAuthProvider },
+        { icon: 'mdi-twitter', handler: TwitterAuthProvider },
+        { icon: 'mdi-github', handler: GithubAuthProvider }
+      ]
     }
   }
 }

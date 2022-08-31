@@ -65,6 +65,11 @@
 <script>
 export default {
   name: 'DefaultLayout',
+  middleware({ store, redirect }) {
+    if (!store.state.firebase.user.displayName) {
+      redirect('/login')
+    } 
+  },
   data() {
     return {
       clipped: false,
