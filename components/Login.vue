@@ -1,5 +1,6 @@
-<template>
-  <div>
+<template><div>
+
+    <!-- card -->
     <v-card
       class="mx-auto px-15 pt-12"
       max-width="474"
@@ -7,14 +8,22 @@
       rounded="xl"
       style="background-color: transparent; border-width: 2px;"
     >
+
+      <!-- logo -->
       <v-img :src="$vuetify.theme.dark ? '/devchallenges-light.svg' : '/devchallenges.svg'" alt="Dev challenges logo" width="130" class="mb-8 rounded-0"></v-img>
-    <slot name="title"></slot>
+
+      <slot name="title"></slot>
+
+      <!-- form -->
       <v-form>
         <v-text-field v-model="email" placeholder="Email" prepend-inner-icon="mdi-email" outlined></v-text-field>
         <v-text-field v-model="password" placeholder="Password" prepend-inner-icon="mdi-lock" outlined></v-text-field>
         <slot name="button"></slot>
       </v-form>
+
       <v-card-text tag="p" class="mb-4 text-center" color="secondary">or continue with these social profile</v-card-text>
+
+      <!-- social-media -->
       <div class="d-flex justify-center"> 
         <div>
           <v-btn 
@@ -31,8 +40,11 @@
           </v-btn>
         </div>
       </div>
+
       <slot name="link"></slot>
     </v-card>
+
+    <!-- footer -->
     <v-footer class="mx-auto justify-space-between" max-width="474" color="transparent">
       <p class="ma-0 font-size-14">
         created by
@@ -40,7 +52,7 @@
       </p>
       <a href="https://devchallenges.io/" target="_blank" class="font-size-14 text-decoration-none">devChallenges.io</a>
     </v-footer>
-  </div>
+</div>
 </template>
 
 <script>

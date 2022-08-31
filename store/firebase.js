@@ -1,22 +1,29 @@
+import { signOut } from "firebase/auth"
+
 export const state = () => ({
   user: {}
 })
 
 export const getters = {
-  getUser(state) {
+  getUser (state) {
     return state.user
   }
 }
 
 export const mutations = {
-  SET_USER(state, val) {
+  SET_USER (state, val) {
     state.user = val
   }
 }
 
 export const actions = {
-  setInfoUser({ commit }, val) {
+  setInfoUser ({ commit }, val) {
     const { displayName, email, phoneNumber, photoURL, uid } = val
     commit('SET_USER', { displayName, email, phoneNumber, photoURL, uid })
-  }
+  },
+  logout ({ commit }) {
+    signOut(this.$auth)
+      .then(() => this.$router.push('/login'))
+      .catch(err => this.handleFirebaseError(err))
+  },
 }

@@ -1,16 +1,21 @@
-<template>
-  <Login>
+<template><Login>
+
+    <!-- title -->
     <template #title>
       <v-card-title tag="h1" class="pa-0 mb-8 font-weight-semibold line-height-25">
         Login
       </v-card-title>
     </template>
+
+    <!-- link -->
     <template #link>
       <v-card-text tag="p" class="text-center" color="secondary">
         Don't have an account yet?
         <NuxtLink to="/signup" class="text-decoration-none">Register</NuxtLink>
       </v-card-text>
     </template>
+
+    <!-- button -->
     <template #button>
       <v-btn 
         :loading="loading"
@@ -22,6 +27,7 @@
         Login
       </v-btn>
     </template>
+    
   </Login>
 </template>
 

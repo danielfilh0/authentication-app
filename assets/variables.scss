@@ -6,6 +6,10 @@ $body-font-family: 'Noto Sans';
 .text-transform-none {text-transform: none !important;}
 .letter-spacing-none {letter-spacing: normal !important;}
 
+.rotate-180-deg {transform: rotate(180deg) !important;}
+
+.box-shadow-none {box-shadow: unset !important;}
+
 // font-size & line-height
 @for $i from 10 through 100 {
     .font-size-#{$i} {font-size: #{$i / 16}rem !important;}

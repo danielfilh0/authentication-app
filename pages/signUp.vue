@@ -1,5 +1,6 @@
-<template>
-  <Login>
+<template><Login>
+
+    <!-- title -->
     <template #title>
       <v-card-title tag="h1" class="pa-0 mb-3 font-weight-semibold line-height-25">
         Join thousands of learners from around the world
@@ -8,11 +9,15 @@
         Master web development by making real-life projects. There are multiple paths for you to choose
       </v-card-text>
     </template>
+
+    <!-- link -->
     <template #link>
       <v-card-text tag="p" class="text-center" color="secondary">Already a member?
         <NuxtLink to="/login" class="text-decoration-none">Login</NuxtLink>
       </v-card-text>
     </template>
+
+    <!-- button -->
     <template #button>
       <v-btn 
         :loading="loading"
@@ -24,6 +29,7 @@
         Start coding now
       </v-btn>
     </template>
+    
   </Login>
 </template>
 
