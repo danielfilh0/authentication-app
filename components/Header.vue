@@ -29,12 +29,12 @@
           >
             <div class="d-flex align-center">
               <v-img
-                :src="user.photoURL"
+                :src="photo"
                 alt="Dev challenges logo"
                 width="32"
                 class="rounded-lg mr-2"
               ></v-img>
-              <strong class="font-size-12 mr-3">{{ user.displayName }}</strong>
+              <strong class="font-size-12 mr-3">{{ username }}</strong>
               <v-icon
                 class="text--text"
                 :class="attrs['aria-expanded'] === 'true' && 'rotate-180-deg'"
@@ -67,9 +67,14 @@ import { mapGetters, mapActions } from 'vuex'
 export default {
   name: 'HeaderComponent',
   computed: {
-    ...mapGetters('firebase', ['getUser']),
-    user () {
-      return this.getUser
+    ...mapGetters('firebase', ['user']),
+    username () {
+      if (!this.user.displayName) return this.user.email
+      return this.user.displayName
+    },
+    photo () {
+      if (!this.user.photoURL) return '/user.png'
+      return this.user.photoURL
     },
     items () {
       return [

@@ -17,17 +17,31 @@
       </v-card-text>
     </template>
 
-    <!-- button -->
-    <template #button>
-      <v-btn 
-        :loading="loading"
-        width="100%"
-        color="primary"
-        height="36"
-        class="mb-2 font-size-16 text-transform-none letter-spacing-none" :disabled="loading"
-        @click="signInOrCreateUser(create)">
-        Start coding now
-      </v-btn>
+    <!-- form -->
+    <template #form>
+      <v-form>
+        <v-text-field
+          v-model="email"
+          placeholder="Email"
+          prepend-inner-icon="mdi-email"
+          outlined
+        />
+        <v-text-field
+          v-model="password"
+          placeholder="Password"
+          prepend-inner-icon="mdi-lock"
+          outlined
+        />
+        <v-btn 
+          :loading="loading"
+          width="100%"
+          color="primary"
+          height="36"
+          class="mb-2 font-size-16 text-transform-none letter-spacing-none" :disabled="loading"
+          @click="signInOrCreateUser(create)">
+          Start coding now
+        </v-btn>
+      </v-form>
     </template>
     
   </Login>
@@ -39,7 +53,7 @@ import Login from '@/components/Login.vue'
 import Auth from '@/mixins/Auth'
 export default {
   name: 'SignUpPage',
-  components: { Login },
+  components: [Login],
   extends: Auth,
   layout: 'login',
   computed: {

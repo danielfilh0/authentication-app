@@ -15,11 +15,7 @@
       <slot name="title"></slot>
 
       <!-- form -->
-      <v-form>
-        <v-text-field v-model="email" placeholder="Email" prepend-inner-icon="mdi-email" outlined></v-text-field>
-        <v-text-field v-model="password" placeholder="Password" prepend-inner-icon="mdi-lock" outlined></v-text-field>
-        <slot name="button"></slot>
-      </v-form>
+      <slot name="form"></slot>
 
       <v-card-text tag="p" class="mb-4 text-center" color="secondary">or continue with these social profile</v-card-text>
 
@@ -45,13 +41,7 @@
     </v-card>
 
     <!-- footer -->
-    <v-footer class="mx-auto justify-space-between" max-width="474" color="transparent">
-      <p class="ma-0 font-size-14">
-        created by
-        <a href="https://github.com/danielfilh0" target="_blank" class="font-size-14 font-weight-semibold" style="color: inherit">danielfilh0</a>
-      </p>
-      <a href="https://devchallenges.io/" target="_blank" class="font-size-14 text-decoration-none">devChallenges.io</a>
-    </v-footer>
+    <Footer />
 </div>
 </template>
 
@@ -63,10 +53,12 @@ import {
   GithubAuthProvider
 } from "firebase/auth"
 import Auth from '@/mixins/Auth'
+import Footer from '@/components/Footer'
 
 export default {
   name: 'LoginComponent',
   extends: Auth,
+  components: [Footer],
   computed: {
     socialMedia() {
       return [

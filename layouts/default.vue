@@ -16,15 +16,12 @@ export default {
   name: 'DefaultLayout',
   components: [Header],
   middleware({ store, redirect }) {
-    if (!store.state.firebase.user.email) {
+    if (!store.state.firebase.user) {
       redirect('/login')
     }
   },
   computed: {
-    ...mapGetters('firebase', ['getUser']),
-    user () {
-      return this.getUser
-    }
+    ...mapGetters('firebase', ['user'])
   }
 }
 </script>

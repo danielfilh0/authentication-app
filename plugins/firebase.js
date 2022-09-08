@@ -1,5 +1,6 @@
 import { initializeApp } from 'firebase/app'
 import { getAuth } from 'firebase/auth'
+import { getFirestore } from 'firebase/firestore'
 
 const firebaseConfig = {
   apiKey: process.env.FIREBASE_API_KEY,
@@ -14,7 +15,10 @@ const firebase = initializeApp(firebaseConfig)
 
 const auth = getAuth()
 
+const db = getFirestore(firebase)
+
 export default ({ app }, inject) => {
   inject('firebase', firebase)
   inject('auth', auth)
+  inject('db', db)
 }

@@ -1,29 +1,60 @@
-import { signOut } from "firebase/auth"
+import { signOut } from 'firebase/auth'
+import { doc, getDoc, setDoc } from 'firebase/firestore'
 
 export const state = () => ({
-  user: {}
+  user: null,
+  loading: false
 })
 
 export const getters = {
-  getUser (state) {
+  user (state) {
     return state.user
+  },
+  loading (state) {
+    return state.loading
   }
 }
 
 export const mutations = {
   SET_USER (state, val) {
     state.user = val
+  },
+  SET_LOADING (state, val) {
+    state.loading = val
   }
 }
 
 export const actions = {
-  setInfoUser ({ commit }, val) {
-    const { displayName, email, phoneNumber, photoURL, uid } = val
-    commit('SET_USER', { displayName, email, phoneNumber, photoURL, uid })
+  async setUser ({ commit }, val) {
+    commit('SET_LOADING', true)
+    const { displayName, email, photoURL, uid } = val
+    let user = {}
+    const docRef = doc(this.$db, 'users', uid)
+    const docSnap = await getDoc(docRef)
+    if (docSnap.exists()) {
+      user = docSnap.data()
+    } 
+    else {
+      user = {
+        displayName,
+        email,
+        photoURL,
+        uid,
+        bio: null,
+        phone: null
+      }
+      await setDoc(docRef, user)
+    }
+    commit('SET_USER', user)
+    commit('SET_LOADING', false)
+    this.$router.push('/')
   },
   logout ({ commit }) {
     signOut(this.$auth)
-      .then(() => this.$router.push('/login'))
+      .then(() =>  {
+        commit('SET_USER', null)
+        this.$router.push('/login')
+      })
       .catch(err => this.handleFirebaseError(err))
-  },
+  }
 }

@@ -9,7 +9,16 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
 export default {
-  name: 'LoginLayout'
+  name: 'LoginLayout',
+  created () {
+    if (this.$auth.currentUser) {
+      this.setUser(this.$auth.currentUser)
+    }
+  },
+  methods: {
+    ...mapActions('firebase', ['setUser'])
+  }
 }
 </script>

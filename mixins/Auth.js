@@ -1,5 +1,5 @@
 import { mapMutations, mapActions } from 'vuex'
-import { onAuthStateChanged, signInWithPopup, signOut } from "firebase/auth"
+import { signInWithPopup, signOut } from "firebase/auth"
 
 const Auth = {
   data: () => ({
@@ -18,12 +18,15 @@ const Auth = {
   }),
   methods: {
     ...mapMutations('firebase', ['SET_USER']),
-    ...mapActions('firebase', ['setInfoUser']),
+    ...mapActions('firebase', ['setUser']),
 
     signInOrCreateUser(Function) {
+      debugger
       this.loading = true
       Function(this.$auth, this.email, this.password)
-        .then()
+        .then((success) => {
+          this.setUser(success.user)
+        })
         .catch(err => this.handleFirebaseError(err))
         .then(() => { this.loading = false })
     },
@@ -31,7 +34,9 @@ const Auth = {
     loginWithSocialMedia(Function) {
       const provider = new Function()
       signInWithPopup(this.$auth, provider)
-        .then()
+        .then((success) => {
+          this.setUser(success.user)
+        })
         .catch(err => this.handleFirebaseError(err))
         .then(() => { this.loading = false })
     },
@@ -59,14 +64,11 @@ const Auth = {
     },
 
     getAuth() {
-      onAuthStateChanged(this.$auth, (res) => {
-        if (res) {
-          this.setInfoUser(res)
-          this.$router.push('/')
-        } else {
-          this.SET_USER(null)
-        }
-      })
+      if (this.$auth.currentUser) {
+        this.setUser(this.$auth.currentUser)
+      } else {
+        this.SET_USER(null)
+      }
     },
   },
   created() {
