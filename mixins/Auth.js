@@ -21,7 +21,6 @@ const Auth = {
     ...mapActions('firebase', ['setUser']),
 
     signInOrCreateUser(Function) {
-      debugger
       this.loading = true
       Function(this.$auth, this.email, this.password)
         .then((success) => {
