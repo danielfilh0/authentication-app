@@ -23,8 +23,11 @@
             Some info may be visible to other people
           </v-card-text>
         </div>
-        <v-btn class="mt-3 px-8 text-capitalize rounded-lg gray--text letter-spacing-none" outlined>
-          Edit
+        <v-btn
+          class="mt-3 px-8 text-capitalize rounded-lg gray--text letter-spacing-none"
+          @click="$router.push('/edit-user')"
+          outlined>
+            Edit
         </v-btn>
       </div>
       <v-divider></v-divider>
@@ -39,6 +42,7 @@
               :src="photo"
               alt="Dev challenges logo"
               max-width="72"
+              height="72"
               class="rounded-lg mr-2" />
             <p v-if="item.type === 'text'" class="ma-0 secondary--text font-size-18 font-weight-medium">
               {{ item.info }}
@@ -61,7 +65,7 @@ import { mapGetters } from 'vuex'
 import Footer from '@/components/Footer'
 export default {
   name: 'IndexPage',
-  components: [Footer],
+  components: { Footer },
   computed: {
     ...mapGetters('firebase', ['user']),
     photo () {

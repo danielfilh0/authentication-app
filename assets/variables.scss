@@ -2,12 +2,24 @@
 
 $body-font-family: 'Noto Sans';
 
+// position
+.position-absolute {position: absolute !important;}
+.position-fixed {position: fixed !important;}
+.position-relative {position: relative !important;}
+
+// typography
 .font-weight-light {font-weight: 300 !important;}
 .font-weight-regular {font-weight: 400 !important;}
 .font-weight-semibold {font-weight: 600 !important;}
 .text-transform-none {text-transform: none !important;}
+.text-decoration-none {text-decoration: none !important;}
 .letter-spacing-none {letter-spacing: normal !important;}
 .list-style-none {list-style: none !important;}
+
+// grid {
+.flex-1 {flex: 1 !important;}
+
+.cursor-pointer {cursor: pointer !important;}
 
 .rotate-180-deg {transform: rotate(180deg) !important;}
 
@@ -22,7 +34,7 @@ $body-font-family: 'Noto Sans';
 // width & height
 @for $i from 10 through 1000 {
     .width-#{$i} {width: #{$i}px !important;}
-    .height-#{$i} {width: #{$i}px !important;}
+    .height-#{$i} {height: #{$i}px !important;}
 }
 
 .v-toast {font-family: $body-font-family !important;}
