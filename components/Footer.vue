@@ -17,8 +17,8 @@ export default {
   name: 'FooterComponent',
   props: {
     maxWidth: {
-      type: Number,
-      default: 474
+      type: String,
+      default: '474'
     }
   },
 }
