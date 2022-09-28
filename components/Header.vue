@@ -32,6 +32,7 @@
                 :src="photo"
                 alt="Dev challenges logo"
                 width="32"
+                height="32"
                 class="rounded-lg mr-2"
               ></v-img>
               <strong class="font-size-12 mr-3">{{ username }}</strong>
