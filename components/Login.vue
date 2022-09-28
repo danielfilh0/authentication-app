@@ -58,7 +58,7 @@ import Footer from '@/components/Footer'
 export default {
   name: 'LoginComponent',
   extends: Auth,
-  components: [Footer],
+  components: { Footer },
   computed: {
     socialMedia() {
       return [
