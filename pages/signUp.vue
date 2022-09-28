@@ -22,12 +22,16 @@
       <v-form>
         <v-text-field
           v-model="email"
+          type="email"
+          :rules="[rules.required, rules.email]"
           placeholder="Email"
           prepend-inner-icon="mdi-email"
           outlined
         />
         <v-text-field
           v-model="password"
+          type="password"
+          :rules="[rules.required, rules.counter]"
           placeholder="Password"
           prepend-inner-icon="mdi-lock"
           outlined
@@ -37,7 +41,8 @@
           width="100%"
           color="primary"
           height="36"
-          class="mb-2 font-size-16 text-transform-none letter-spacing-none" :disabled="loading"
+          class="mb-2 font-size-16 text-transform-none letter-spacing-none"
+          :disabled="loading"
           @click="signInOrCreateUser(create)">
           Start coding now
         </v-btn>
@@ -53,9 +58,19 @@ import Login from '@/components/Login.vue'
 import Auth from '@/mixins/Auth'
 export default {
   name: 'SignUpPage',
-  components: [Login],
+  components: { Login },
   extends: Auth,
   layout: 'login',
+  data: () => ({
+    rules: {
+      counter: val => val.length > 6 || 'Min 7 characters.',
+      required: val => !!val || 'Required.',
+      email: val => {
+        const pattern = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+        return pattern.test(val) || 'Invalid e-mail.'
+      },
+    }
+  }),
   computed: {
     create() {
       return createUserWithEmailAndPassword

@@ -1,5 +1,4 @@
 <template>
-  <!-- eslint-disable-next-line -->
   <Login :email="email" :password="password">
 
     <!-- title -->
@@ -22,12 +21,14 @@
       <v-form>
         <v-text-field
           v-model="email"
+          type="email"
           placeholder="Email"
           prepend-inner-icon="mdi-email"
           outlined
         />
         <v-text-field
           v-model="password"
+          type="password"
           placeholder="Password"
           prepend-inner-icon="mdi-lock"
           outlined
@@ -37,7 +38,8 @@
           width="100%"
           color="primary"
           height="36"
-          class="mb-2 font-size-16 text-transform-none letter-spacing-none" :disabled="loading"
+          class="mb-2 font-size-16 text-transform-none letter-spacing-none"
+          :disabled="loading"
           @click="signInOrCreateUser(signIn)">
           Login
         </v-btn>
@@ -52,8 +54,8 @@ import { signInWithEmailAndPassword } from "firebase/auth"
 import Login from '@/components/Login.vue'
 import Auth from '@/mixins/Auth'
 export default {
-  name: 'LoginPage',
-  components: [Login],
+  name: 'login-page',
+  components: { Login },
   extends: Auth,
   layout: 'login',
   computed: {
