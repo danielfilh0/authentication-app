@@ -10,18 +10,19 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters, mapActions } from 'vuex'
 import Header from '@/components/Header'
 export default {
   name: 'DefaultLayout',
-  components: [Header],
-  middleware({ store, redirect }) {
-    if (!store.state.firebase.user) {
-      redirect('/login')
-    }
-  },
+  components: { Header },
   computed: {
     ...mapGetters('firebase', ['user'])
-  }
+  },
+  methods: {
+    ...mapActions('firebase', ['handleAuth'])
+  },
+  created () {
+    this.handleAuth()
+  },
 }
 </script>

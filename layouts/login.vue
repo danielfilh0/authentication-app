@@ -13,12 +13,11 @@ import { mapActions } from 'vuex'
 export default {
   name: 'LoginLayout',
   created () {
-    if (this.$auth.currentUser) {
-      this.setUser(this.$auth.currentUser)
-    }
+    this.handleAuth()
   },
   methods: {
-    ...mapActions('firebase', ['setUser'])
+    ...mapActions('firebase', ['setUser']),
+    ...mapActions('firebase', ['handleAuth'])
   }
 }
 </script>
