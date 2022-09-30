@@ -71,7 +71,7 @@ export default {
   name: 'HeaderComponent',
   extends: BaseView,
   computed: {
-    ...mapGetters('firebase', ['user']),
+    ...mapGetters(['user']),
     username () {
       if (!this.user.displayName) return this.user.email
       return this.user.displayName
@@ -99,7 +99,7 @@ export default {
     }
   },
   methods: {
-    ...mapActions('firebase', ['logout']),
+    ...mapActions('auth', ['logout']),
     handleClick (obj) {
       const { f, params } = obj
       this[f](params)

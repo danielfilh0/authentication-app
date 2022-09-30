@@ -40,7 +40,7 @@
           height="36"
           class="mb-2 font-size-16 text-transform-none letter-spacing-none"
           :disabled="loading"
-          @click="signInOrCreateUser(signIn)">
+          @click="signInOrCreateUser(data)">
           Login
         </v-btn>
       </v-form>
@@ -50,18 +50,29 @@
 </template>
 
 <script>
+import { mapGetters, mapActions } from 'vuex'
 import { signInWithEmailAndPassword } from "firebase/auth"
 import Login from '@/components/Login.vue'
-import Auth from '@/mixins/Auth'
 export default {
-  name: 'login-page',
+  name: 'LoginPage',
   components: { Login },
-  extends: Auth,
   layout: 'login',
+  data: () => ({
+    email: '',
+    password: ''
+  }),
   computed: {
-    signIn() {
-      return signInWithEmailAndPassword
+    ...mapGetters('ui', ['loading']),
+    data() {
+      return {
+        email: this.email,
+        password: this.password,
+        callback: signInWithEmailAndPassword
+      }
     }
+  },
+  methods: {
+    ...mapActions('auth', ['signInOrCreateUser'])
   }
 }
 </script>

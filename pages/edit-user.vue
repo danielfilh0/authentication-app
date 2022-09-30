@@ -123,9 +123,8 @@ export default {
         label: 'Change Photo',
         field: null,
         type: 'file',
-        slug: 'photo'
-      },
-      {
+        slug: 'photoURL'
+      }, {
         label: 'Name',
         field: null,
         type: 'text',
@@ -159,7 +158,8 @@ export default {
     ]
   }),
   computed: {
-    ...mapGetters('firebase', ['user', 'loading']),
+    ...mapGetters(['user']),
+    ...mapGetters('ui', ['loading']),
     photo () {
       if (this.uploadedPhoto) return this.uploadedPhoto
       else return this.user.photoURL ? this.user.photoURL : '/user.png'
@@ -168,7 +168,7 @@ export default {
       const obj = {}
       this.formData.forEach((item) => {
         if (item.slug) {
-          obj[item.slug] = item.field ? item.field : this.user[item.slug]
+          obj[item.slug] = item.field ? item.field : null
         }
       })
       return obj
@@ -182,7 +182,7 @@ export default {
     }
   },
   methods: {
-    ...mapActions('firebase', ['updateUser']),
+    ...mapActions('user-profile', ['updateUser']),
     handleSubmit () {
       window.scroll({ top: 0, behavior: 'smooth' })
       this.updateUser(this.fields)

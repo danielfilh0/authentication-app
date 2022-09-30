@@ -32,7 +32,7 @@
             height="42"
             color="gray"
             outlined
-            @click="loginWithSocialMedia(media.handler)">
+            @click="loginWithSocialMedia(media.callback)">
             <v-icon color="gray">{{ media.icon }}</v-icon>
           </v-btn>
         </div>
@@ -47,28 +47,33 @@
 </template>
 
 <script>
+import { mapGetters, mapActions } from 'vuex'
 import {
   GoogleAuthProvider,
   FacebookAuthProvider,
   TwitterAuthProvider,
   GithubAuthProvider
 } from "firebase/auth"
-import Auth from '@/mixins/Auth'
+import BaseView from '@/mixins/BaseView'
 import Footer from '@/components/Footer'
 
 export default {
   name: 'LoginComponent',
-  extends: Auth,
   components: { Footer },
+  extends: BaseView,
   computed: {
+    ...mapGetters('ui', ['loading']),
     socialMedia() {
       return [
-        { icon: 'mdi-google', handler: GoogleAuthProvider },
-        { icon: 'mdi-facebook', handler: FacebookAuthProvider },
-        { icon: 'mdi-twitter', handler: TwitterAuthProvider },
-        { icon: 'mdi-github', handler: GithubAuthProvider }
+        { icon: 'mdi-google', callback: GoogleAuthProvider },
+        { icon: 'mdi-facebook', callback: FacebookAuthProvider },
+        { icon: 'mdi-twitter', callback: TwitterAuthProvider },
+        { icon: 'mdi-github', callback: GithubAuthProvider }
       ]
     }
+  },
+  methods: {
+    ...mapActions('auth', ['loginWithSocialMedia'])
   }
 }
 </script>

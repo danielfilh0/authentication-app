@@ -83,7 +83,7 @@ export default {
   extends: BaseView,
   components: { Footer },
   computed: {
-    ...mapGetters('firebase', ['user']),
+    ...mapGetters(['user']),
     photo () {
       if (!this.user.photoURL) return '/user.png'
       return this.user.photoURL

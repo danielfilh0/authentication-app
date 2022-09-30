@@ -16,8 +16,8 @@ export default {
     this.handleAuth()
   },
   methods: {
-    ...mapActions('firebase', ['setUser']),
-    ...mapActions('firebase', ['handleAuth'])
+    ...mapActions(['setUser']),
+    ...mapActions('auth', ['handleAuth'])
   }
 }
 </script>

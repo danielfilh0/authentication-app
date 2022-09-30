@@ -18,10 +18,10 @@ export default {
   extends: BaseView,
   components: { Header },
   computed: {
-    ...mapGetters('firebase', ['user'])
+    ...mapGetters(['user'])
   },
   methods: {
-    ...mapActions('firebase', ['handleAuth'])
+    ...mapActions('auth', ['handleAuth'])
   },
   created () {
     this.handleAuth()
