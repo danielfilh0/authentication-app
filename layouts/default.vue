@@ -2,7 +2,7 @@
   <v-app v-if="user">
     <Header />
     <v-main class="backgroundLogged">
-      <v-container>
+      <v-container :class="isMobile && 'pa-0'">
         <Nuxt />
       </v-container>
       </v-main>
@@ -11,9 +11,11 @@
 
 <script>
 import { mapGetters, mapActions } from 'vuex'
+import BaseView from '@/mixins/BaseView'
 import Header from '@/components/Header'
 export default {
   name: 'DefaultLayout',
+  extends: BaseView,
   components: { Header },
   computed: {
     ...mapGetters('firebase', ['user'])

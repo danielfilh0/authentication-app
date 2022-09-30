@@ -2,11 +2,12 @@
 
     <!-- card -->
     <v-card
-      class="mx-auto px-15 pt-12"
+      class="mx-auto"
+      :class="!isMobile ? 'card-login px-15 pt-12' : 'border-none px-4 pt-4'"
       max-width="474"
       outlined
       rounded="xl"
-      style="background-color: transparent; border-width: 2px;"
+      style="background-color: transparent;"
     >
 
       <!-- logo -->
@@ -72,6 +73,6 @@ export default {
 }
 </script>
 
-<style>
-
+<style lang="scss">
+.card-login {border-width: 2px !important;}
 </style>

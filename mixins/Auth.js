@@ -1,7 +1,9 @@
 import { mapMutations, mapActions } from 'vuex'
 import { signInWithPopup, signOut } from "firebase/auth"
+import BaseView from '@/mixins/BaseView'
 
 const Auth = {
+  extends: BaseView,
   data: () => ({
     email: '',
     password: '',

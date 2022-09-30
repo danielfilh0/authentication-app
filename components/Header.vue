@@ -35,8 +35,9 @@
                 height="32"
                 class="rounded-lg mr-2"
               ></v-img>
-              <strong class="font-size-12 mr-3">{{ username }}</strong>
+              <strong v-if="!isMobile" class="font-size-12 mr-3">{{ username }}</strong>
               <v-icon
+                v-if="!isMobile"
                 class="text--text"
                 :class="attrs['aria-expanded'] === 'true' && 'rotate-180-deg'"
               >
@@ -65,8 +66,10 @@
 
 <script>
 import { mapGetters, mapActions } from 'vuex'
+import BaseView from '@/mixins/BaseView'
 export default {
   name: 'HeaderComponent',
+  extends: BaseView,
   computed: {
     ...mapGetters('firebase', ['user']),
     username () {

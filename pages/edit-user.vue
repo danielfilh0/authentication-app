@@ -17,7 +17,8 @@
     <!-- user info -->
     <v-card
       max-width="845"
-      class="user-info mx-auto mb-2 px-12 py-6"
+      class="user-info mx-auto mb-2"
+      :class="isMobile ? 'border-none pa-4': 'px-12 py-6'"
       outlined
       rounded="xl"
     >
@@ -37,7 +38,7 @@
           >
           <v-col
             v-if="item.type === 'file'"
-            cols="4"
+            md="4"
             class="ma-0 pa-0 mb-4 d-flex align-center">
             <div class="width-72 height-72 mr-4 rounded-lg primary position-relative">
               <v-img
@@ -62,7 +63,7 @@
               {{item.label}}
             </label>
           </v-col>
-          <v-col cols="8" class="ma-0 pa-0">
+          <v-col md="8" class="ma-0 pa-0">
             <label v-if="item.type !== 'file'" :for="item.label" class="grey300--text font-size-13">{{ item.label }}</label>
             <v-textarea 
               v-if="item.type === 'area'"
@@ -78,7 +79,9 @@
               :id="item.label"
               :placeholder="item.placeholder"
               outlined
-              v-model="item.field" />
+              v-model="item.field"
+              style="width: 100%;"
+            />
           </v-col>
         </v-row>
         <v-row>
@@ -89,7 +92,7 @@
               class="mb-2 font-size-16 text-transform-none letter-spacing-none"
               :disabled="!formIsFilled"
               @click="handleSubmit"
-              >
+            >
               Save
             </v-btn>
           </v-col>
@@ -106,9 +109,11 @@
 
 <script>
 import { mapGetters, mapActions } from 'vuex'
+import BaseView from '@/mixins/BaseView'
 import Footer from '@/components/Footer'
 export default {
   name: 'edit-user-page',
+  extends: BaseView,
   components: { Footer },
   data: () => ({
     uploadedPhoto: null,
@@ -199,5 +204,5 @@ export default {
   span {position: relative; top: 2px;}
 }
 .loading {top: 40%; left: 50%; z-index: 1;}
-.user-info {background-color: transparent; border-width: 1px;}
+.user-info {background-color: transparent !important; border-width: 1px !important;}
 </style>

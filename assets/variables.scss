@@ -10,6 +10,7 @@ $body-font-family: 'Noto Sans';
 // typography
 .font-weight-light {font-weight: 300 !important;}
 .font-weight-regular {font-weight: 400 !important;}
+.font-weight-medium {font-weight: 500 !important;}
 .font-weight-semibold {font-weight: 600 !important;}
 .text-transform-none {text-transform: none !important;}
 .text-decoration-none {text-decoration: none !important;}
@@ -24,6 +25,7 @@ $body-font-family: 'Noto Sans';
 .rotate-180-deg {transform: rotate(180deg) !important;}
 
 .box-shadow-none {box-shadow: unset !important;}
+.border-none {border: 0 !important;}
 
 // font-size & line-height
 @for $i from 10 through 100 {

@@ -1,25 +1,35 @@
 <template>
   <div class="pb-10">
-    <h1 class="pa-0 mb-3 font-weight-regular black--text line-height-29 text-center">
+    <h1
+      class="pa-0 mb-3 font-weight-regular black--text line-height-29 text-center"
+      :class="isMobile ? 'font-size-28' : 'font-size-36'"
+    >
       Personal info
     </h1>
 
-    <h3 class="pa-0 mb-10 font-weight-light black--text line-height-29 text-center">
+    <h2
+      class="pa-0 mb-10 font-size-18 font-weight-light black--text line-height-29 text-center"
+      :class="isMobile ? 'font-size-14' : 'font-size-18'"
+    >
       Basic info, like your name and photo
-    </h3>
+    </h2>
 
     <!-- user info -->
     <v-card
       max-width="845"
       class="mx-auto mb-2"
+      :class="isMobile ? 'border-none pt-4' : ''"
       outlined
       rounded="xl"
       style="background-color: transparent; border-width: 1px;"
     >
-      <div class="d-flex justify-space-between px-12 py-6">
+      <div
+        class="d-flex justify-space-between py-6"
+        :class="isMobile ? 'px-4' : 'px-12'"
+      >
         <div>
-          <v-card-title class="pa-0">Profile</v-card-title>
-          <v-card-text class="pa-0">
+          <v-card-title tag="h3" class="pa-0 font-size-24 font-weight-normal">Profile</v-card-title>
+          <v-card-text class="pa-0 gray--text font-weight-medium">
             Some info may be visible to other people
           </v-card-text>
         </div>
@@ -30,10 +40,13 @@
             Edit
         </v-btn>
       </div>
-      <v-divider></v-divider>
+      <v-divider v-if="!isMobile"></v-divider>
       <ul class="list-style-none pa-0">
         <li v-for="(item, index) in data" :key="index">
-          <div class="d-flex align-center px-12 py-5">
+          <div
+            class="d-flex align-center py-5"
+            :class="isMobile ? 'px-4' : 'px-12'"
+          >
             <p class="text-uppercase ma-0 width-250 font-size-13 font-weight-medium gray--text">
               {{ item.title }}
             </p>
@@ -48,7 +61,8 @@
               {{ item.info }}
             </p>
           </div>
-          <v-divider v-if="index < data.length - 1"></v-divider>
+          <v-divider v-if="isMobile"></v-divider>
+          <v-divider v-if="index < data.length - 1 && !isMobile"></v-divider>
         </li>
       </ul>
     </v-card>
@@ -62,9 +76,11 @@
 
 <script>
 import { mapGetters } from 'vuex'
+import BaseView from '@/mixins/BaseView'
 import Footer from '@/components/Footer'
 export default {
   name: 'IndexPage',
+  extends: BaseView,
   components: { Footer },
   computed: {
     ...mapGetters('firebase', ['user']),
