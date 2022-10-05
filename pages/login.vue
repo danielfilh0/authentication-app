@@ -12,7 +12,7 @@
     <template #link>
       <v-card-text tag="p" class="text-center" color="secondary">
         Don't have an account yet?
-        <NuxtLink to="/signup" class="text-decoration-none">Register</NuxtLink>
+        <NuxtLink to="/sign-up" class="text-decoration-none">Register</NuxtLink>
       </v-card-text>
     </template>
 

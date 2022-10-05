@@ -28,14 +28,8 @@
             v-on="on"
           >
             <div class="d-flex align-center">
-              <v-img
-                :src="photo"
-                alt="Dev challenges logo"
-                width="32"
-                height="32"
-                class="rounded-lg mr-2"
-              ></v-img>
-              <strong v-if="!isMobile" class="font-size-12 mr-3">{{ username }}</strong>
+              <UserPhoto width="32" height="32" />
+              <strong v-if="!isMobile" class="font-size-12 ml-2 mr-3">{{ username }}</strong>
               <v-icon
                 v-if="!isMobile"
                 class="text--text"
@@ -67,8 +61,10 @@
 <script>
 import { mapGetters, mapActions } from 'vuex'
 import BaseView from '@/mixins/BaseView'
+import UserPhoto from '@/components/UserPhoto'
 export default {
   name: 'HeaderComponent',
+  components: { UserPhoto },
   extends: BaseView,
   computed: {
     ...mapGetters(['user']),
@@ -76,24 +72,20 @@ export default {
       if (!this.user.displayName) return this.user.email
       return this.user.displayName
     },
-    photo () {
-      if (!this.user.photoURL) return '/user.png'
-      return this.user.photoURL
-    },
     items () {
       return [
         { 
           icon: 'mdi-account-circle',
           text: 'My Profile',
-          handler: { f: 'goTo', params: '/' } 
+          handler: { func: 'goTo', params: '/' } 
         }, { 
           icon: 'mdi-account-multiple',
           text: 'Group Chat',
-          handler: { f: 'goTo', params: '/' } 
+          handler: { func: 'goTo', params: '/' } 
         }, { 
           icon: 'mdi-logout', 
           text: 'Logout',
-          handler: { f: 'logout', params: '' } 
+          handler: { func: 'logout', params: '' } 
         }
       ]
     }
@@ -101,11 +93,8 @@ export default {
   methods: {
     ...mapActions('auth', ['logout']),
     handleClick (obj) {
-      const { f, params } = obj
-      this[f](params)
-    },
-    goTo (path) {
-      this.$router.push(path)
+      const { func, params } = obj
+      this[func](params)
     }
   }
 }

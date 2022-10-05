@@ -50,13 +50,7 @@
             <p class="text-uppercase ma-0 width-250 font-size-13 font-weight-medium gray--text">
               {{ item.title }}
             </p>
-            <v-img
-              v-if="item.type === 'img'"
-              :src="photo"
-              alt="Dev challenges logo"
-              max-width="72"
-              height="72"
-              class="rounded-lg mr-2" />
+            <UserPhoto v-if="item.type === 'img'" />
             <p v-if="item.type === 'text'" class="ma-0 secondary--text font-size-18 font-weight-medium">
               {{ item.info }}
             </p>
@@ -77,20 +71,17 @@
 <script>
 import { mapGetters } from 'vuex'
 import BaseView from '@/mixins/BaseView'
+import UserPhoto from '@/components/UserPhoto'
 import Footer from '@/components/Footer'
 export default {
   name: 'IndexPage',
   extends: BaseView,
-  components: { Footer },
+  components: { UserPhoto, Footer },
   computed: {
     ...mapGetters(['user']),
-    photo () {
-      if (!this.user.photoURL) return '/user.png'
-      return this.user.photoURL
-    },
     data () {
       return [
-        { type: 'img', title: 'Photo', info: this.photo },
+        { type: 'img', title: 'Photo', info: this.user.photoURL },
         { type: 'text', title: 'Name', info: this.user.displayName },
         { type: 'text', title: 'Bio', info: this.user.bio },
         { type: 'text', title: 'Phone', info: this.user.phone },

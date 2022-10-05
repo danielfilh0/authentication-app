@@ -41,12 +41,7 @@
             md="4"
             class="ma-0 pa-0 mb-4 d-flex align-center">
             <div class="width-72 height-72 mr-4 rounded-lg primary position-relative">
-              <v-img
-                :src="photo"
-                alt="Dev challenges logo"
-                width="72"
-                height="72"
-                class="rounded-lg" />
+              <UserPhoto :upload="uploadedPhoto" />
               <v-file-input
                 v-model="photoFile"
                 id="change-photo"
@@ -110,11 +105,12 @@
 <script>
 import { mapGetters, mapActions } from 'vuex'
 import BaseView from '@/mixins/BaseView'
+import UserPhoto from '@/components/UserPhoto'
 import Footer from '@/components/Footer'
 export default {
-  name: 'edit-user-page',
+  name: 'EditUserPage',
   extends: BaseView,
-  components: { Footer },
+  components: { UserPhoto, Footer },
   data: () => ({
     uploadedPhoto: null,
     photoFile: null,
@@ -160,10 +156,6 @@ export default {
   computed: {
     ...mapGetters(['user']),
     ...mapGetters('ui', ['loading']),
-    photo () {
-      if (this.uploadedPhoto) return this.uploadedPhoto
-      else return this.user.photoURL ? this.user.photoURL : '/user.png'
-    },
     fields () {
       const obj = {}
       this.formData.forEach((item) => {

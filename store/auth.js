@@ -5,7 +5,8 @@ export const actions = {
     commit('ui/SET_LOADING', true, { root: true })
     const { email, password, callback } = val
     try {
-      const user = await callback(this.$auth, email, password)
+      const { user } = await callback(this.$auth, email, password)
+      debugger
       await dispatch('setUser', user, { root: true })
     }
     catch (err) { dispatch('ui/handleError', err, { root: true }) } 
@@ -16,7 +17,7 @@ export const actions = {
     const Callback = val
     const provider = new Callback()
     try {
-      const user = await signInWithPopup(this.$auth, provider)
+      const { user } = await signInWithPopup(this.$auth, provider)
       dispatch('setUser', user, { root: true })
     }
     catch (err) { dispatch('ui/handleError', err, { root: true }) }

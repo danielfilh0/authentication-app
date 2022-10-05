@@ -24,8 +24,7 @@ export const mutations = {
 
 export const actions = {
   async setUser ({ commit }, val) {
-    const { displayName, email, photoURL } = val
-    const uid = val.uid || val.user.uid
+    const { email, photoURL, displayName, uid } = val
     let user = {}
     const docRef = doc(this.$db, 'users', uid)
     const docSnap = await getDoc(docRef)
