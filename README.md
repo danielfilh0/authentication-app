@@ -1,68 +1,61 @@
-# authentication-app
+<h1 align="center">Authentication App</h1>
 
-## Build Setup
+### Description
+Solution for a challenge from <a href="https://devchallenges.io/challenges/N1fvBjQfhlkctmwj1tnw">Devchallenges.io</a>.
+
+### Features
+- You can register a new account
+- You can log in
+- You can log in or register with at least one of the following services: Google, Facebook, Twitter or Github
+- You can sign out
+- You can see your profile details
+- You can edit your details including: photo, name, bio, phone, email and password
+- You can upload a new photo or provide an image URL
+
+### How to run
+
+You must have Git and Node js installed
+
+Also, it will necessary create an web project on Firebase according to the <a href="https://firebase.google.com/docs/web/setup?authuser=0&%3Bhl=pt">docs</a>
+
+In your terminal, run the following commands:
 
 ```bash
-# install dependencies
-$ yarn install
+$ git clone https://github.com/danielfilh0/authentication-app.git
 
-# serve with hot reload at localhost:3000
-$ yarn dev
+$ cd authentication-app
 
-# build for production and launch server
-$ yarn build
-$ yarn start
+$ touch .env
 
-# generate static project
-$ yarn generate
 ```
 
-For detailed explanation on how things work, check out the [documentation](https://nuxtjs.org).
+In the file .env, add the following code and replace "{{ ... }}" for your firebase project infos
 
-## Special Directories
+```javascript
 
-You can create the following extra directories, some of which have special behaviors. Only `pages` is required; you can delete them if you don't want to use their functionality.
+FIREBASE_API_KEY="{{ YOUR_FIREBASE_API_KEY }}"
+FIREBASE_AUTH_DOMAIN="{{ YOUR_FIREBASE_AUTH_DOMAIN }}"
+FIREBASE_PROJECT_ID="{{ YOUR_FIREBASE_PROJECT_ID }}"
+FIREBASE_STORAGE_BUCKET="{{ YOUR_FIREBASE_STORAGE_BUCKET }}"
+FIREBASE_MESSAGING_SENDER_ID="{{ YOUR_FIREBASE_MESSAGING_SENDER_ID }}"
+FIREBASE_APP_ID="{{ YOUR_FIREBASE_APP_ID }}"
 
-### `assets`
+```
 
-The assets directory contains your uncompiled assets such as Stylus or Sass files, images, or fonts.
+After that, run:
 
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/directory-structure/assets).
+```bash
 
-### `components`
+$ yarn
 
-The components directory contains your Vue.js components. Components make up the different parts of your page and can be reused and imported into your pages, layouts and even other components.
+$ yarn dev
 
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/directory-structure/components).
+```
 
-### `layouts`
+Be happy.
 
-Layouts are a great help when you want to change the look and feel of your Nuxt app, whether you want to include a sidebar or have distinct layouts for mobile and desktop.
-
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/directory-structure/layouts).
-
-### `pages`
-
-This directory contains your application views and routes. Nuxt will read all the `*.vue` files inside this directory and setup Vue Router automatically.
-
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/get-started/routing).
-
-### `plugins`
-
-The plugins directory contains JavaScript plugins that you want to run before instantiating the root Vue.js Application. This is the place to add Vue plugins and to inject functions or constants. Every time you need to use `Vue.use()`, you should create a file in `plugins/` and add its path to plugins in `nuxt.config.js`.
-
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/directory-structure/plugins).
-
-### `static`
-
-This directory contains your static files. Each file inside this directory is mapped to `/`.
-
-Example: `/static/robots.txt` is mapped as `/robots.txt`.
-
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/directory-structure/static).
-
-### `store`
-
-This directory contains your Vuex store files. Creating a file in this directory automatically activates Vuex.
-
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/directory-structure/store).
+### Stacks
+- Vue js
+- Nuxt js
+- Vuetify
+- Firebase
