@@ -3,6 +3,8 @@
 ### Description
 Solution for a challenge from <a href="https://devchallenges.io/challenges/N1fvBjQfhlkctmwj1tnw">Devchallenges.io</a>.
 
+Deployment: <a href="https://authentication-app-three.vercel.app">Authentication App</a>.
+
 ### Features
 - You can register a new account
 - You can log in
