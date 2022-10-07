@@ -34,7 +34,6 @@ export const actions = {
 
   async updatePhoto ({ rootState, commit }, val) {
     if (val) {
-      debugger
       const storageRef = ref(this.$storage, 'photos/' + rootState.user.uid)
       await uploadBytes(storageRef, val)
       const url = await getDownloadURL(storageRef)

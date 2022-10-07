@@ -6,7 +6,6 @@ export const actions = {
     const { email, password, callback } = val
     try {
       const { user } = await callback(this.$auth, email, password)
-      debugger
       await dispatch('setUser', user, { root: true })
     }
     catch (err) { dispatch('ui/handleError', err, { root: true }) } 

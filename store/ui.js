@@ -31,7 +31,6 @@ export const mutations = {
 
 export const actions = {
   handleError ({ getters, dispatch }, val) {
-    console.error(val)
     const { message } = val
     const result = getters.errors.find((error) => {
       for(const prop in error) {
