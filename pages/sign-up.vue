@@ -27,6 +27,7 @@
           placeholder="Email"
           prepend-inner-icon="mdi-email"
           outlined
+          :disabled="!isLocalHost()"
         />
         <v-text-field
           v-model="password"
@@ -35,6 +36,7 @@
           placeholder="Password"
           prepend-inner-icon="mdi-lock"
           outlined
+          :disabled="!isLocalHost()"
         />
         <v-btn 
           :loading="loading"
@@ -42,8 +44,8 @@
           color="primary"
           height="36"
           class="mb-2 font-size-16 text-transform-none letter-spacing-none"
-          :disabled="loading"
-          @click="signInOrCreateUser(data)">
+          :disabled="loading || !isLocalHost()"
+          @click.prevent="handleClick">
           Start coding now
         </v-btn>
       </v-form>
@@ -55,10 +57,12 @@
 <script>
 import { mapGetters, mapActions } from 'vuex'
 import { createUserWithEmailAndPassword } from "firebase/auth"
+import BaseView from '@/mixins/BaseView'
 import Login from '@/components/Login.vue'
 export default {
   name: 'SignUpPage',
   components: { Login },
+  extends: BaseView,
   layout: 'login',
   data: () => ({
     email: '',
@@ -83,7 +87,10 @@ export default {
     }
   },
   methods: {
-    ...mapActions('auth', ['signInOrCreateUser'])
+    ...mapActions('auth', ['signInOrCreateUser']),
+    handleClick () {
+      if (this.isLocalHost()) this.signInOrCreateUser(this.data)
+    }
   }
 }
 </script>

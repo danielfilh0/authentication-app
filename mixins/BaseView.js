@@ -7,6 +7,10 @@ const BaseView = {
   methods: {
     goTo (path) {
       this.$router.push(path)
+    },
+
+    isLocalHost () {
+      return window.location.href.includes('localhost')
     }
   }
 }
